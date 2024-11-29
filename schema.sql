@@ -31,3 +31,26 @@ CREATE TABLE UserPreferences (
     notification_settings JSON,
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
+
+-- Posts Table
+CREATE TABLE Posts (
+    post_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    content TEXT,
+    post_type ENUM('TEXT', 'IMAGE', 'VIDEO', 'LINK') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    visibility ENUM('PUBLIC', 'PRIVATE', 'FRIENDS_ONLY') DEFAULT 'PUBLIC',
+    like_count INT DEFAULT 0,
+    comment_count INT DEFAULT 0,
+    share_count INT DEFAULT 0,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    INDEX idx_post_user (user_id),
+    INDEX idx_post_created_at (created_at)
+) PARTITION BY RANGE (UNIX_TIMESTAMP(created_at)) (
+    PARTITION p0 VALUES LESS THAN (UNIX_TIMESTAMP('2023-01-01')),
+    PARTITION p1 VALUES LESS THAN (UNIX_TIMESTAMP('2024-01-01')),
+    PARTITION p2 VALUES LESS THAN (UNIX_TIMESTAMP('2025-01-01')),
+    PARTITION p3 VALUES LESS THAN MAXVALUE
+);
+
