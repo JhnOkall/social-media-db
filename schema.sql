@@ -21,3 +21,13 @@ CREATE TABLE UserRoles (
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     PRIMARY KEY (user_id, role)
 );
+
+-- User Preferences Table
+CREATE TABLE UserPreferences (
+    user_id BIGINT PRIMARY KEY,
+    language VARCHAR(10),
+    theme ENUM('LIGHT', 'DARK', 'SYSTEM') DEFAULT 'SYSTEM',
+    privacy_level ENUM('PUBLIC', 'PRIVATE', 'FRIENDS_ONLY') DEFAULT 'PUBLIC',
+    notification_settings JSON,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
