@@ -13,3 +13,11 @@ CREATE TABLE Users (
     INDEX idx_user_email (email),
     INDEX idx_user_username (username)
 ) PARTITION BY HASH(user_id) PARTITIONS 16;
+
+-- User Roles Table
+CREATE TABLE UserRoles (
+    user_id BIGINT,
+    role ENUM('USER', 'ADMIN', 'MODERATOR') DEFAULT 'USER',
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    PRIMARY KEY (user_id, role)
+);
