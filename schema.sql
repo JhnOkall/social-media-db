@@ -116,3 +116,13 @@ CREATE TABLE MessageThreads (
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     last_message_at TIMESTAMP
 );
+
+-- Message Thread Participants
+CREATE TABLE MessageThreadParticipants (
+    thread_id BIGINT,
+    user_id BIGINT,
+    joined_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (thread_id, user_id),
+    FOREIGN KEY (thread_id) REFERENCES MessageThreads(thread_id),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id)
+);
