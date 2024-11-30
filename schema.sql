@@ -140,3 +140,19 @@ CREATE TABLE Messages (
     INDEX idx_message_thread (thread_id),
     INDEX idx_message_sender (sender_id)
 ) PARTITION BY HASH(thread_id) PARTITIONS 16;
+
+-- Notifications Table
+CREATE TABLE Notifications (
+    notification_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    sender_id BIGINT,
+    notification_type ENUM('LIKE', 'COMMENT', 'FOLLOW', 'MENTION', 'MESSAGE') NOT NULL,
+    content_id BIGINT,
+    content_type ENUM('POST', 'COMMENT', 'MESSAGE') DEFAULT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_read BOOLEAN DEFAULT FALSE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (sender_id) REFERENCES Users(user_id),
+    INDEX idx_notification_user (user_id),
+    INDEX idx_notification_type (notification_type)
+);
