@@ -172,3 +172,21 @@ CREATE TABLE PostHashtags (
     FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE,
     FOREIGN KEY (hashtag_id) REFERENCES Hashtags(hashtag_id) ON DELETE CASCADE
 );
+
+-- Reports Table
+CREATE TABLE Reports (
+    report_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    reporter_id BIGINT NOT NULL,
+    reported_user_id BIGINT,
+    reported_content_id BIGINT,
+    reported_content_type ENUM('USER', 'POST', 'COMMENT') NOT NULL,
+    report_type ENUM('SPAM', 'HARASSMENT', 'INAPPROPRIATE_CONTENT', 'OTHER') NOT NULL,
+    report_status ENUM('PENDING', 'UNDER_REVIEW', 'RESOLVED') DEFAULT 'PENDING',
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    resolved_at TIMESTAMP,
+    resolution_details TEXT,
+    FOREIGN KEY (reporter_id) REFERENCES Users(user_id),
+    FOREIGN KEY (reported_user_id) REFERENCES Users(user_id),
+    INDEX idx_report_reporter (reporter_id),
+    INDEX idx_report_status (report_status)
+);
