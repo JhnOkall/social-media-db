@@ -1,0 +1,21 @@
+INSERT INTO Comments (post_id, user_id, parent_comment_id, content, like_count)
+VALUES
+(1, 2, NULL, 'Great post! Keep it up.', 5),
+(2, 3, NULL, 'Interesting perspective!', 3),
+(3, 4, NULL, 'Thanks for sharing this!', 2),
+(4, 5, NULL, 'This is very helpful, thanks.', 4),
+(5, 6, NULL, 'Nice work, I agree with this.', 1),
+(6, 7, NULL, 'Well written, very insightful.', 6),
+(7, 8, NULL, 'I appreciate the effort you put in.', 2),
+(8, 9, NULL, 'This is exactly what I needed.', 3),
+(9, 10, NULL, 'Fantastic explanation, thanks!', 7),
+(10, 11, NULL, 'Couldn’t agree more.', 0),
+(1, 3, 1, 'Absolutely! Totally agree.', 1),
+(2, 4, 2, 'I have a slightly different view.', 2),
+(3, 5, 3, 'Glad this helped you too!', 0),
+(4, 6, 4, 'You’re welcome, happy to help!', 3),
+(5, 7, 5, 'Thanks for the kind words!', 0),
+(6, 8, 6, 'I’m glad you found it insightful.', 1),
+(7, 9, 7, 'Means a lot, thanks!', 2),
+(8, 10, 8, 'Happy to hear that!', 0),
+(9, 11, 9, 'Always happy to explain.', 3);
