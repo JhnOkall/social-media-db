@@ -98,6 +98,18 @@ CREATE TABLE Likes (
     INDEX idx_like_content (content_id, content_type)
 );
 
+-- Bookmarks Table
+CREATE TABLE Bookmarks (
+    bookmark_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    post_id BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE,
+    UNIQUE KEY unique_bookmark (user_id, post_id),
+    INDEX idx_bookmark_user (user_id)
+);
+
 -- Followers Table
 CREATE TABLE Followers (
     follower_id BIGINT NOT NULL,
