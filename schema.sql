@@ -108,3 +108,11 @@ CREATE TABLE Followers (
     INDEX idx_followers_follower (follower_id),
     INDEX idx_followers_followed (followed_id)
 );
+
+-- Message Threads Table
+CREATE TABLE MessageThreads (
+    thread_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    thread_type ENUM('PRIVATE', 'GROUP') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    last_message_at TIMESTAMP
+);
