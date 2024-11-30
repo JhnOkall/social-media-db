@@ -156,3 +156,10 @@ CREATE TABLE Notifications (
     INDEX idx_notification_user (user_id),
     INDEX idx_notification_type (notification_type)
 );
+
+-- Hashtags Table
+CREATE TABLE Hashtags (
+    hashtag_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    hashtag_name VARCHAR(100) UNIQUE NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
