@@ -83,3 +83,16 @@ CREATE TABLE Comments (
     INDEX idx_comment_post (post_id),
     INDEX idx_comment_parent (parent_comment_id)
 ) PARTITION BY HASH(post_id) PARTITIONS 16;
+
+-- Likes Table
+CREATE TABLE Likes (
+    like_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    content_id BIGINT NOT NULL,
+    content_type ENUM('POST', 'COMMENT') NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE KEY unique_like (user_id, content_id, content_type),
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    INDEX idx_like_user (user_id),
+    INDEX idx_like_content (content_id, content_type)
+);
