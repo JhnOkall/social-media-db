@@ -212,3 +212,15 @@ CREATE TABLE ActivityLog (
     PARTITION p2 VALUES LESS THAN (UNIX_TIMESTAMP('2025-01-01')),
     PARTITION p3 VALUES LESS THAN MAXVALUE
 );
+
+-- Daily Engagement Metrics
+CREATE TABLE DailyEngagementMetrics (
+    metric_date DATE PRIMARY KEY,
+    total_users BIGINT,
+    new_users BIGINT,
+    total_posts BIGINT,
+    total_comments BIGINT,
+    total_likes BIGINT,
+    active_users BIGINT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
