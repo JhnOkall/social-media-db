@@ -190,3 +190,25 @@ CREATE TABLE Reports (
     INDEX idx_report_reporter (reporter_id),
     INDEX idx_report_status (report_status)
 );
+
+-- Activity Log Table
+CREATE TABLE ActivityLog (
+    activity_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    action_type ENUM(
+        'LOGIN', 'LOGOUT', 
+        'POST_CREATED', 'POST_UPDATED', 'POST_DELETED',
+        'COMMENT_CREATED', 'COMMENT_DELETED',
+        'PROFILE_UPDATED', 'PASSWORD_CHANGED'
+    ) NOT NULL,
+    action_details JSON,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    INDEX idx_activity_user (user_id),
+    INDEX idx_activity_type (action_type)
+) PARTITION BY RANGE (UNIX_TIMESTAMP(created_at)) (
+    PARTITION p0 VALUES LESS THAN (UNIX_TIMESTAMP('2023-01-01')),
+    PARTITION p1 VALUES LESS THAN (UNIX_TIMESTAMP('2024-01-01')),
+    PARTITION p2 VALUES LESS THAN (UNIX_TIMESTAMP('2025-01-01')),
+    PARTITION p3 VALUES LESS THAN MAXVALUE
+);
