@@ -110,6 +110,17 @@ CREATE TABLE Bookmarks (
     INDEX idx_bookmark_user (user_id)
 );
 
+-- Shares Table
+CREATE TABLE Shares (
+    share_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    user_id BIGINT NOT NULL,
+    post_id BIGINT NOT NULL,
+    shared_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE,
+    INDEX idx_share_user (user_id)
+);
+
 -- Followers Table
 CREATE TABLE Followers (
     follower_id BIGINT NOT NULL,
