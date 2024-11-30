@@ -44,6 +44,7 @@ CREATE TABLE Posts (
     like_count INT DEFAULT 0,
     comment_count INT DEFAULT 0,
     share_count INT DEFAULT 0,
+    bookmark_count INT DEFAULT 0,
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     INDEX idx_post_user (user_id),
     INDEX idx_post_created_at (created_at)
