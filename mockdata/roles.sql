@@ -1,0 +1,22 @@
+INSERT INTO UserRoles (user_id, role)
+VALUES
+(1, 'USER'),
+(2, 'USER'),
+(3, 'ADMIN'),
+(4, 'USER'),
+(5, 'USER'),
+(6, 'MODERATOR'),
+(7, 'USER'),
+(8, 'USER'),
+(9, 'USER'),
+(10, 'ADMIN'),
+(11, 'USER'),
+(12, 'USER'),
+(13, 'MODERATOR'),
+(14, 'USER'),
+(15, 'USER'),
+(16, 'USER'),
+(17, 'USER'),
+(18, 'ADMIN'),
+(19, 'USER'),
+(20, 'USER');
