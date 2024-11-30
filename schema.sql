@@ -2,6 +2,7 @@
 CREATE TABLE Users (
     user_id BIGINT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(50) UNIQUE NOT NULL,
+    full_name VARCHAR(255) NOT NULL,
     email VARCHAR(255) UNIQUE NOT NULL,
     password_hash VARCHAR(255) NOT NULL,
     profile_picture_url VARCHAR(500) DEFAULT 'https://picsum.photos/100',
