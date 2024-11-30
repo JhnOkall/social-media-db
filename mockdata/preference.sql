@@ -1,0 +1,22 @@
+INSERT INTO UserPreferences (user_id, language, theme, privacy_level, notification_settings)
+VALUES
+(1, 'en', 'LIGHT', 'PUBLIC', '{"email": true, "sms": false, "push": true}'),
+(2, 'fr', 'DARK', 'FRIENDS_ONLY', '{"email": true, "sms": true, "push": false}'),
+(3, 'en', 'SYSTEM', 'PRIVATE', '{"email": true, "sms": false, "push": true}'),
+(4, 'es', 'LIGHT', 'PUBLIC', '{"email": true, "sms": true, "push": true}'),
+(5, 'en', 'DARK', 'FRIENDS_ONLY', '{"email": false, "sms": true, "push": false}'),
+(6, 'en', 'SYSTEM', 'PRIVATE', '{"email": true, "sms": false, "push": false}'),
+(7, 'de', 'LIGHT', 'PUBLIC', '{"email": true, "sms": false, "push": true}'),
+(8, 'en', 'DARK', 'FRIENDS_ONLY', '{"email": true, "sms": true, "push": false}'),
+(9, 'it', 'SYSTEM', 'PRIVATE', '{"email": false, "sms": true, "push": true}'),
+(10, 'en', 'LIGHT', 'PUBLIC', '{"email": true, "sms": false, "push": true}'),
+(11, 'es', 'DARK', 'FRIENDS_ONLY', '{"email": true, "sms": false, "push": false}'),
+(12, 'en', 'SYSTEM', 'PRIVATE', '{"email": true, "sms": true, "push": true}'),
+(13, 'fr', 'LIGHT', 'PUBLIC', '{"email": false, "sms": false, "push": true}'),
+(14, 'en', 'DARK', 'FRIENDS_ONLY', '{"email": true, "sms": false, "push": true}'),
+(15, 'en', 'SYSTEM', 'PRIVATE', '{"email": true, "sms": true, "push": false}'),
+(16, 'it', 'LIGHT', 'PUBLIC', '{"email": false, "sms": false, "push": true}'),
+(17, 'de', 'DARK', 'FRIENDS_ONLY', '{"email": true, "sms": true, "push": true}'),
+(18, 'en', 'SYSTEM', 'PRIVATE', '{"email": true, "sms": false, "push": false}'),
+(19, 'es', 'LIGHT', 'PUBLIC', '{"email": true, "sms": true, "push": true}'),
+(20, 'en', 'DARK', 'FRIENDS_ONLY', '{"email": false, "sms": false, "push": true}');
