@@ -96,3 +96,15 @@ CREATE TABLE Likes (
     INDEX idx_like_user (user_id),
     INDEX idx_like_content (content_id, content_type)
 );
+
+-- Followers Table
+CREATE TABLE Followers (
+    follower_id BIGINT NOT NULL,
+    followed_id BIGINT NOT NULL,
+    followed_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (follower_id, followed_id),
+    FOREIGN KEY (follower_id) REFERENCES Users(user_id),
+    FOREIGN KEY (followed_id) REFERENCES Users(user_id),
+    INDEX idx_followers_follower (follower_id),
+    INDEX idx_followers_followed (followed_id)
+);
