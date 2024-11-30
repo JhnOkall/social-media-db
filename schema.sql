@@ -163,3 +163,12 @@ CREATE TABLE Hashtags (
     hashtag_name VARCHAR(100) UNIQUE NOT NULL,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
+
+-- Post Hashtags (Many-to-Many Relationship)
+CREATE TABLE PostHashtags (
+    post_id BIGINT,
+    hashtag_id BIGINT,
+    PRIMARY KEY (post_id, hashtag_id),
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE,
+    FOREIGN KEY (hashtag_id) REFERENCES Hashtags(hashtag_id) ON DELETE CASCADE
+);
