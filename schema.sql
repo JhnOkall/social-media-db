@@ -54,3 +54,16 @@ CREATE TABLE Posts (
     PARTITION p3 VALUES LESS THAN MAXVALUE
 );
 
+-- Media Table
+CREATE TABLE Media (
+    media_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    post_id BIGINT,
+    user_id BIGINT NOT NULL,
+    file_url VARCHAR(500) NOT NULL,
+    file_type ENUM('IMAGE', 'VIDEO') NOT NULL,
+    file_size BIGINT,
+    upload_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    INDEX idx_media_post (post_id)
+);
