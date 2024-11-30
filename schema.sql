@@ -126,3 +126,17 @@ CREATE TABLE MessageThreadParticipants (
     FOREIGN KEY (thread_id) REFERENCES MessageThreads(thread_id),
     FOREIGN KEY (user_id) REFERENCES Users(user_id)
 );
+
+-- Messages Table
+CREATE TABLE Messages (
+    message_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    thread_id BIGINT NOT NULL,
+    sender_id BIGINT NOT NULL,
+    content TEXT NOT NULL,
+    sent_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    read_status ENUM('SENT', 'DELIVERED', 'READ') DEFAULT 'SENT',
+    FOREIGN KEY (thread_id) REFERENCES MessageThreads(thread_id),
+    FOREIGN KEY (sender_id) REFERENCES Users(user_id),
+    INDEX idx_message_thread (thread_id),
+    INDEX idx_message_sender (sender_id)
+) PARTITION BY HASH(thread_id) PARTITIONS 16;
