@@ -67,3 +67,19 @@ CREATE TABLE Media (
     FOREIGN KEY (user_id) REFERENCES Users(user_id),
     INDEX idx_media_post (post_id)
 );
+
+-- Comments Table (with recursive self-join for threaded comments)
+CREATE TABLE Comments (
+    comment_id BIGINT PRIMARY KEY AUTO_INCREMENT,
+    post_id BIGINT NOT NULL,
+    user_id BIGINT NOT NULL,
+    parent_comment_id BIGINT,
+    content TEXT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    like_count INT DEFAULT 0,
+    FOREIGN KEY (post_id) REFERENCES Posts(post_id) ON DELETE CASCADE,
+    FOREIGN KEY (user_id) REFERENCES Users(user_id),
+    FOREIGN KEY (parent_comment_id) REFERENCES Comments(comment_id) ON DELETE CASCADE,
+    INDEX idx_comment_post (post_id),
+    INDEX idx_comment_parent (parent_comment_id)
+) PARTITION BY HASH(post_id) PARTITIONS 16;
